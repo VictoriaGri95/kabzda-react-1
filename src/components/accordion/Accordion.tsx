@@ -1,6 +1,9 @@
+
+
 type AccordionProps = {
   titleValue: string
   collapsed: boolean
+  onChange: (collapsed: boolean) => void
 }
 
 
@@ -8,40 +11,22 @@ export function Accordion (props: AccordionProps) {
 
     return (
       <div>
-        <AccordionTitle title={props.titleValue} />
+        <AccordionTitle title={props.titleValue} onClick={() => props.onChange(!props.collapsed)}/>
         { !props.collapsed && <AccordionBody /> }
       </div>
     )
 
 }
 
-
-
-export function Accordion2(props: AccordionProps) {
-  if (props.collapsed === true) {
-    return (
-      <div>
-        <AccordionTitle title={props.titleValue} />
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        <AccordionTitle title={props.titleValue} />
-        <AccordionBody />
-      </div>
-    )
-  }
-
-
-}
 type AccordionTitleProps = {
   title: string
+  onClick: () => void
+
 }
 
 function AccordionTitle(props: AccordionTitleProps) {
   return (
-    <h3>{props.title}</h3>
+    <h3 onClick={props.onClick}>{props.title}</h3>
   )
 }
 
@@ -54,3 +39,23 @@ function AccordionBody() {
     </ul>
   )
 }
+
+
+// export function Accordion2(props: AccordionProps) {
+//   if (props.collapsed === true) {
+//     return (
+//       <div>
+//         <AccordionTitle title={props.titleValue} />
+//       </div>
+//     )
+//   } else {
+//     return (
+//       <div>
+//         <AccordionTitle title={props.titleValue} />
+//         <AccordionBody />
+//       </div>
+//     )
+//   }
+//
+//
+// }

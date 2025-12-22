@@ -1,33 +1,29 @@
 import './App.css'
 
-import {OnOff} from "./components/onOff/OnOff.tsx";
-import {
-  UncontrolledAccordion
-} from "./components/uncontrolledAccordion/UncontrolledAccordion.tsx";
-import {
-  UncontrolledRating
-} from "./components/uncontrolledRaiting/UncontrolledRating.tsx";
+import {useState} from "react";
+import {Rating, type RatingValueType} from "./components/raiting/ Raiting.tsx";
+import {Accordion} from "./components/accordion/Accordion.tsx";
 
 
 
 function App() {
-
+let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
   return (
 
     <>
 
-      <OnOff/>
-
-
-      <UncontrolledAccordion titleValue={"Menu"}/>
-      <UncontrolledRating/>
+      {/*<OnOff/>*/}
+      {/*<UncontrolledAccordion titleValue={"Menu"}/>*/}
+      <Rating value={ratingValue} onClick={setRatingValue}/>
+      <Accordion titleValue={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
+      {/*<UncontrolledRating/>*/}
 
       {/*<PageTittle title={"This is app component."}/>*/}
 
 
-      {/*<Accordion titleValue={"Menu"} collapsed={true}/>*/}
       {/*<Accordion titleValue={"Users"} collapsed={false}/>*/}
-      {/*<Rating value={1}/>*/}
+
       {/*<Rating value={2}/>*/}
       {/*<Rating value={3}/>*/}
       {/*<Rating value={4}/>*/}

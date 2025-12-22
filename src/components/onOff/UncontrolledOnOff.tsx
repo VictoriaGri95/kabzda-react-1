@@ -4,7 +4,7 @@
 
 import {useState} from "react";
 
-export function OnOff() {
+export function UncontrolledOnOff() {
 
 
   // let on = false
