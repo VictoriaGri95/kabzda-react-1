@@ -3,17 +3,19 @@ import './App.css'
 import {useState} from "react";
 import {Rating, type RatingValueType} from "./components/raiting/ Raiting.tsx";
 import {Accordion} from "./components/accordion/Accordion.tsx";
+import {OnOff} from "./components/onOff/OnOff.tsx";
 
 
 
 function App() {
 let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
 let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+  let [on, setOn] = useState(false)
   return (
 
     <>
 
-      {/*<OnOff/>*/}
+      <OnOff on={on} setOn={setOn}/>
       {/*<UncontrolledAccordion titleValue={"Menu"}/>*/}
       <Rating value={ratingValue} onClick={setRatingValue}/>
       <Accordion titleValue={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
