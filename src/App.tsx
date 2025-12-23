@@ -4,21 +4,34 @@ import {useState} from "react";
 import {Rating, type RatingValueType} from "./components/raiting/ Raiting.tsx";
 import {Accordion} from "./components/accordion/Accordion.tsx";
 import {OnOff} from "./components/onOff/OnOff.tsx";
-
+import {
+  UncontrolledOnOff
+} from "./components/uncontrolledOnOff/UncontrolledOnOff.tsx";
 
 
 function App() {
-let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
-let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-  let [on, setOn] = useState(false)
+  const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+  const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+  const [on, setOn] = useState(false)
   return (
 
     <>
 
-      <OnOff on={on} setOn={setOn}/>
+      <OnOff
+        isOn={on}
+        onChange={setOn}
+      />
       {/*<UncontrolledAccordion titleValue={"Menu"}/>*/}
-      <Rating value={ratingValue} onClick={setRatingValue}/>
-      <Accordion titleValue={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
+      <Rating
+        value={ratingValue}
+        onClick={setRatingValue}
+      />
+      <Accordion
+        titleValue={"Menu"}
+        collapsed={accordionCollapsed}
+        onChange={() => setAccordionCollapsed(prev => !prev)}
+      />
+      <UncontrolledOnOff onChange={setOn}/>
       {/*<UncontrolledRating/>*/}
 
       {/*<PageTittle title={"This is app component."}/>*/}
