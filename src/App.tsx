@@ -26,8 +26,17 @@ function App() {
         value={ratingValue}
         onClick={setRatingValue}
       />
+      <Rating
+        value={ratingValue}
+        onClick={setRatingValue}
+      />
       <Accordion
         titleValue={"Menu"}
+        collapsed={accordionCollapsed}
+        onChange={() => setAccordionCollapsed(prev => !prev)}
+      />
+      <Accordion
+        titleValue={"BLABLA"}
         collapsed={accordionCollapsed}
         onChange={() => setAccordionCollapsed(prev => !prev)}
       />
