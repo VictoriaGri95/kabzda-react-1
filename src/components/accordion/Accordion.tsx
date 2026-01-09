@@ -1,10 +1,15 @@
 
 
-
+type ItemType = {
+  title: string,
+  value: any,
+}
 type AccordionProps = {
   titleValue: string
   collapsed: boolean
   onChange: () => void
+  items: ItemType[]
+  onClick: (value: any) => void
 }
 
 
@@ -13,7 +18,7 @@ export function Accordion (props: AccordionProps) {
     return (
       <div>
         <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
-        { !props.collapsed && <AccordionBody /> }
+        { !props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/> }
       </div>
     )
 
@@ -31,32 +36,19 @@ function AccordionTitle(props: AccordionTitleProps) {
   )
 }
 
-function AccordionBody() {
-  return (
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-    </ul>
-  )
+type AccordionBodyProps = {
+  items: ItemType[]
+  onClick: (value: any) => void
 }
 
 
-// export function Accordion2(props: AccordionProps) {
-//   if (props.collapsed === true) {
-//     return (
-//       <div>
-//         <AccordionTitle title={props.titleValue} />
-//       </div>
-//     )
-//   } else {
-//     return (
-//       <div>
-//         <AccordionTitle title={props.titleValue} />
-//         <AccordionBody />
-//       </div>
-//     )
-//   }
-//
-//
-// }
+function AccordionBody(props: AccordionBodyProps) {
+  return (
+    <ul>
+      {props.items.map((item, index) => (
+        <li onClick={() => {props.onClick(item.value)}} key={index}>{item.title}</li>
+      ))}
+
+    </ul>
+  )
+}
