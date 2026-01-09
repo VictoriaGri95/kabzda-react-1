@@ -59,19 +59,19 @@ function App() {
 
 export default App
 
-type PageTittleProps = {
-  title: string
-}
+// type PageTittleProps = {
+//   title: string
+// }
 
-function PageTittle(props: PageTittleProps) {
-
-  return (
-    <h1>
-      {props.title}
-    </h1>
-
-  )
-}
+// function PageTittle(props: PageTittleProps) {
+//
+//   return (
+//     <h1>
+//       {props.title}
+//     </h1>
+//
+//   )
+// }
 
 
 

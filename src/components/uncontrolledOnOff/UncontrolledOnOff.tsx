@@ -1,12 +1,13 @@
 type PropsType = {
 onChange: (on: boolean) => void,
+  defaultOn?: boolean,
 }
 
 
 import {useState} from "react";
 
 export function UncontrolledOnOff(props: PropsType) {
-  const [on, setOn] = useState(false)
+  const [on, setOn] = useState(props.defaultOn ? props.defaultOn : false);
 
 
 
