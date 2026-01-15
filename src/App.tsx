@@ -7,12 +7,14 @@ import {OnOff} from "./components/onOff/OnOff.tsx";
 import {
   UncontrolledOnOff
 } from "./components/uncontrolledOnOff/UncontrolledOnOff.tsx";
+import {Select} from "./components/select/Select.tsx";
 
 
 function App() {
   const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
   const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
   const [on, setOn] = useState(false)
+  const [isOpenedSelect, setIsOpenedSelect] = useState(false)
   return (
 
     <>
@@ -30,17 +32,20 @@ function App() {
         value={ratingValue}
         onClick={setRatingValue}
       />
-      <Accordion
-        titleValue={"Menu"}
-        collapsed={accordionCollapsed}
-        onChange={() => setAccordionCollapsed(prev => !prev)}
-      />
-      <Accordion
-        titleValue={"BLABLA"}
-        collapsed={accordionCollapsed}
-        onChange={() => setAccordionCollapsed(prev => !prev)}
-      />
-      <UncontrolledOnOff onChange={setOn}/>
+
+      {/*<Accordion*/}
+      {/*  titleValue={"Menu"}*/}
+      {/*  collapsed={accordionCollapsed}*/}
+      {/*  onChange={() => setAccordionCollapsed(prev => !prev)}*/}
+      {/*  onClick={() => setAccordionCollapsed(prev => !prev)}*/}
+      {/*  items={}*/}
+      {/*/>*/}
+      {/*<Accordion*/}
+      {/*  titleValue={"BLABLA"}*/}
+      {/*  collapsed={accordionCollapsed}*/}
+      {/*  onChange={() => setAccordionCollapsed(prev => !prev)}*/}
+      {/*/>*/}
+      <UncontrolledOnOff onChange={setOn} />
       {/*<UncontrolledRating/>*/}
 
       {/*<PageTittle title={"This is app component."}/>*/}

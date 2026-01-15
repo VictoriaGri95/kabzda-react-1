@@ -1,5 +1,3 @@
-
-
 import {type ChangeEvent, useRef, useState} from "react";
 
 export default {
@@ -31,7 +29,7 @@ export const GetValueUncontrolledInputByButtonPress = () => {
     setValue(el.value)
   }
   return <>
-    <input ref={InputRef}/>
+    <input ref={InputRef} />
     <button onClick={onClickHandler}>save</button>
     value: {value}
   </>
@@ -39,7 +37,7 @@ export const GetValueUncontrolledInputByButtonPress = () => {
 }
 
 
-export const ControlledInputWithFixedValue = () => <input value={'IT-Inc'}/>;
+export const ControlledInputWithFixedValue = () => <input value={'IT-Inc'} />;
 
 export const ControlledInput = () => {
   const [parentValue, setParentValue] = useState('')
@@ -47,7 +45,10 @@ export const ControlledInput = () => {
 
     setParentValue(e.currentTarget.value)
   }
-  return <input value={parentValue} onChange={onChangeHandler}/>;
+  return <input
+    value={parentValue}
+    onChange={onChangeHandler}
+  />;
 
 }
 
@@ -57,7 +58,11 @@ export const ControlledCheckbox = () => {
 
     setParentValue(e.currentTarget.checked)
   }
-  return <input type={"checkbox"} checked={parentValue} onChange={onChangeHandler}/>;
+  return <input
+    type={"checkbox"}
+    checked={parentValue}
+    onChange={onChangeHandler}
+  />;
 }
 
 export const ControlledSelect = () => {
@@ -66,7 +71,10 @@ export const ControlledSelect = () => {
 
     setParentValue(e.currentTarget.value)
   }
-  return <select value={parentValue} onChange={onChangeHandler}>
+  return <select
+    value={parentValue}
+    onChange={onChangeHandler}
+  >
     <option>none</option>
     <option value="1">Minsk</option>
     <option value="2">Moscow</option>

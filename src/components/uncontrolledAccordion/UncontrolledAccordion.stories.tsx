@@ -1,4 +1,3 @@
-
 import {UncontrolledAccordion} from "./UncontrolledAccordion.tsx";
 
 
@@ -9,7 +8,7 @@ export default {
 
 
 export const CollapsedAccordion = () => {
-  return  <UncontrolledAccordion
+  return <UncontrolledAccordion
     titleValue={"Collapsed Accordion"}
   />
 }

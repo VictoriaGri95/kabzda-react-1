@@ -8,12 +8,21 @@ export default {
   component: OnOff,
 }
 
-export const OnState = () => <OnOff isOn={true} onChange={action('clicked')}/>
+export const OnState = () => <OnOff
+  isOn={true}
+  onChange={action('clicked')}
+/>
 
-export const OffState = () => <OnOff isOn={false} onChange={action('clicked')}/>
+export const OffState = () => <OnOff
+  isOn={false}
+  onChange={action('clicked')}
+/>
 
 export const OnOffState = () => {
   const [OnOffState, setOnOff] = useState(true)
- return <OnOff isOn={OnOffState} onChange={setOnOff}/>
+  return <OnOff
+    isOn={OnOffState}
+    onChange={setOnOff}
+  />
 }
 

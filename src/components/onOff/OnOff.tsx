@@ -37,8 +37,20 @@ export function OnOff(props: PropsType) {
 
   return (
     <div>
-      <div style={onStyle} onClick={() => {props.onChange(true)}}>On</div>
-      <div style={offStyle} onClick={() => {props.onChange(false)}}>Off</div>
+      <div
+        style={onStyle}
+        onClick={() => {
+          props.onChange(true)
+        }}
+      >On
+      </div>
+      <div
+        style={offStyle}
+        onClick={() => {
+          props.onChange(false)
+        }}
+      >Off
+      </div>
       <div style={indicatorStyle}></div>
     </div>
   )

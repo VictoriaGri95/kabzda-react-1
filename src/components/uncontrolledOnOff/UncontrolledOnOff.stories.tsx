@@ -1,4 +1,3 @@
-
 import {UncontrolledOnOff} from "./UncontrolledOnOff.tsx";
 
 
@@ -9,7 +8,7 @@ export default {
 
 
 export const OnMode = () => {
-  return  <UncontrolledOnOff
+  return <UncontrolledOnOff
     defaultOn={true}
     onChange={x => x}
   />
