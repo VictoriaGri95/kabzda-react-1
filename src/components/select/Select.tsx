@@ -1,5 +1,5 @@
 import s from './Select.module.css'
-import {useState, KeyboardEvent} from "react";
+import {useState, KeyboardEvent, useEffect} from "react";
 
 type ItemType = {
   title: string,
@@ -18,26 +18,43 @@ export const Select = (props: SelectProps) => {
   const [hoveredElementValue, setHoveredElementValue] = useState(props.value);
 
   const selectedItem = props.items.find(item => item.value === props.value)
+
   const hoveredItem = props.items.find(item => item.value === hoveredElementValue)
+
+  useEffect(() => {
+
+    setHoveredElementValue(props.value)
+
+  }, [props.value])
 
   const setActiveHandler = () => {
     setActive(!active)
   }
-const onItemClick = (value: any) => {
-  props.onChange(value)
-  setActiveHandler()
-}
+  const onItemClick = (value: any) => {
+    props.onChange(value)
+    setActiveHandler()
+  }
 
   const onKeyUpHandler = (e: KeyboardEvent<HTMLDivElement>) => {
-    console.log("onKeyUp")
-    for(let i = 0; i < props.items.length; i++) {
-      if (props.items[i].value === hoveredElementValue) {
-        if (props.items[i+1]) {
-          props.onChange(props.items[i+1].value)
-          break
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      for (let i = 0; i < props.items.length; i++) {
+        if (props.items[i].value === hoveredElementValue) {
+          const pretendentElement = e.key === "ArrowDown"
+            ? props.items[i + 1]
+            : props.items[i - 1]
+          if (pretendentElement) {
+            props.onChange(pretendentElement.value)
+            return
+          }
         }
-
       }
+      if (!selectedItem) {
+        props.onChange(props.items[0].value)
+      }
+    }
+
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      setActive(false)
     }
   }
 
@@ -50,13 +67,29 @@ const onItemClick = (value: any) => {
         <option value='3'>Kiev</option>
       </select>
 
-      <div className={s.select} onKeyUp={onKeyUpHandler} tabIndex={0}>
-        <span className={s.main} onClick={setActiveHandler}>{selectedItem && selectedItem.title}</span>
+      <div
+        className={s.select}
+        onKeyUp={onKeyUpHandler}
+        tabIndex={0}
+      >
+        <span
+          className={s.main}
+          onClick={setActiveHandler}
+        >{selectedItem && selectedItem.title}</span>
         {
           active &&
           <div className={s.items}>
             {props.items.map((item, index: number) =>
-              <div onMouseEnter={() => {setHoveredElementValue(item.value)}} className={s.item + " " + (hoveredItem === item ? s.selected : '')} key={index} onClick={()=> {onItemClick(item.value)}}>{item.title}</div>)}
+              <div
+                onMouseEnter={() => {
+                  setHoveredElementValue(item.value)
+                }}
+                className={s.item + " " + (hoveredItem === item ? s.selected : '')}
+                key={index}
+                onClick={() => {
+                  onItemClick(item.value)
+                }}
+              >{item.title}</div>)}
           </div>
         }
 

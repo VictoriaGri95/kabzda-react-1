@@ -24,20 +24,19 @@ export const SelectWithValue = () => {
 }
 
 
-
 export const SelectWithoutValue = () => {
   const [value, setValue] = useState(null)
   return <>
 
-  <Select
-    value={value}
-  onChange={setValue}
-  items={[
-      {value: '1', title: 'Minsk'},
-  {value: '2', title: 'Moscow'},
-  {value: '3', title: 'Kiev'}
-]}
-  />
-</>
+    <Select
+      value={value}
+      onChange={setValue}
+      items={[
+        {value: '1', title: 'Minsk'},
+        {value: '2', title: 'Moscow'},
+        {value: '3', title: 'Kiev'}
+      ]}
+    />
+  </>
 }
 
