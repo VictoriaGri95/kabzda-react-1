@@ -1,11 +1,11 @@
-import {useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 
 
 export default {
   title: 'useMemo',
 }
 
-export const Example1 = () => {
+export const DifficultCountingExample = () => {
 
   const [a, setA] = useState<number>(5)
   const [b, setB] = useState<number>(5)
@@ -22,15 +22,11 @@ export const Example1 = () => {
         fake++
         const fakeValue = Math.random()
       }
-      tempResultA =  tempResultA * i
+      tempResultA = tempResultA * i
 
     }
     return tempResultA
   }, [a])
-
-
-
-
 
 
   for (let i = 1; i <= b; i++) {
@@ -39,9 +35,19 @@ export const Example1 = () => {
 
   return (
     <>
-      <input value={a} onChange={(e) => {setA(+e.currentTarget.value)}}/>
-      <input value={b} onChange={(e) => {setB(+e.currentTarget.value)}}/>
-      <hr/>
+      <input
+        value={a}
+        onChange={(e) => {
+          setA(+e.currentTarget.value)
+        }}
+      />
+      <input
+        value={b}
+        onChange={(e) => {
+          setB(+e.currentTarget.value)
+        }}
+      />
+      <hr />
       <div>
         Result for a: {resultA}
       </div>
@@ -51,4 +57,43 @@ export const Example1 = () => {
     </>
   )
 
+}
+
+
+export const UsersSecret = (props: { users: Array<string> }) => {
+  console.log("Users")
+  return (
+    <div>
+      {props.users.map((u, i) => (
+        <div key={i}>{u}</div>
+      ))}
+    </div>
+  );
+};
+//HOC - hight order component
+const Users = React.memo(UsersSecret)
+
+export const HelpsToReactMemo = () => {
+  console.log("Example1")
+  const [counter, setCounter] = useState(0)
+  const [users, setUsers] = useState(["Dima", "Valera", "Artem", "Denis"])
+
+  const newArray = useMemo(() => {
+    const newArray = users.filter((u) => u.toLowerCase().indexOf('a') > -1)
+    return newArray
+  }, [users])
+
+  const addUser = () => {
+    const newUser = [...users, "Sveta" + new Date().getTime()]
+    setUsers(newUser)
+  }
+
+  return (
+    <>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button onClick={addUser}>Add</button>
+      {counter}
+      <Users users={newArray} />
+    </>
+  )
 }

@@ -16,6 +16,6 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
         collapsed: !state.collapsed  // Более простая запись
       };
     default:
-     throw new Error(`Incorrect action type`)
+      throw new Error(`Incorrect action type`)
   }
 }

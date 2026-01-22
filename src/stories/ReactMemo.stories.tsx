@@ -4,13 +4,12 @@ export default {
   title: 'ReactMemo demo',
 }
 
-const NewMessagesCounter = (props: {count: number}) => {
+const NewMessagesCounter = (props: { count: number }) => {
   return <div>{props.count}</div>
 }
 
 
-
-const UsersSecret = (props: {users: Array<string>}) => {
+const UsersSecret = (props: { users: Array<string> }) => {
   console.log("Users")
   return (
     <div>
@@ -32,13 +31,13 @@ export const Example1 = () => {
     const newUser = [...users, "Sveta" + new Date().getTime()]
     setUsers(newUser)
   }
-  
+
   return (
-  <>
-    <button onClick={() => setCounter(counter + 1)}>+</button>
-    <button onClick={addUser}>Add</button>
-  <NewMessagesCounter count={counter}  />
-    <Users users={users} />
-  </>
-)
+    <>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button onClick={addUser}>Add</button>
+      <NewMessagesCounter count={counter} />
+      <Users users={users} />
+    </>
+  )
 }

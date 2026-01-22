@@ -1,5 +1,3 @@
-
-
 import {reducer, type StateType, TOGGLE_COLLAPSED} from "./reducer.tsx";
 
 
@@ -40,7 +38,9 @@ test("reducer must throw error because action type is incorrect", () => {
   }
 
   //action
-  expect(() => {reducer(state, {type: FAKE_TYPE}) }).toThrowError()
+  expect(() => {
+    reducer(state, {type: FAKE_TYPE})
+  }).toThrowError()
 
 
 })
