@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 
 
 export default {
@@ -97,3 +97,75 @@ export const HelpsToReactMemo = () => {
     </>
   )
 }
+
+
+export const LikeUseCallback = () => {
+  console.log("LikeUseCallback")
+  const [counter, setCounter] = useState(0)
+  const [books, setBooks] = useState(['React', 'JS', 'CSS', 'HTML'])
+
+  const newArray = useMemo(() => {
+    const newArray = books.filter((b) => b.toLowerCase().indexOf('a') > -1)
+    return newArray
+  }, [books])
+
+  // const addBook = () => {
+  //   const newBook = [...books, "Angular" + new Date().getTime()]
+  //   setBooks(newBook)
+  // }
+
+
+// запомни и вызови
+  const memoizedAddBook = useMemo(() => {
+    return () => {
+      const newBook = [...books, "Angular" + new Date().getTime()]
+      setBooks(newBook)
+    }
+  }, [books])
+
+
+//запомни, но не вызывай. Верни то, что было передано когда-то 1 раз
+
+  const memoizedAddBook2 = useCallback(() => {
+    const newBook = [...books, "Angular" + new Date().getTime()]
+    setBooks(newBook)
+  }, [books])
+
+
+  return (
+    <>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+
+      {counter}
+      <Book
+        books={newArray}
+        addBook={memoizedAddBook2}
+      />
+    </>
+  )
+}
+
+
+type BookSecretProps = {
+  books: Array<string>,
+  addBook: () => void
+}
+
+export const BooksSecret = (props: BookSecretProps) => {
+  console.log("Books")
+  return (
+    <div>
+      <button
+        onClick={() => {
+          props.addBook()
+        }}
+      >Add
+      </button>
+      {props.books.map((b, i) => (
+        <div key={i}>{b}</div>
+      ))}
+    </div>
+  );
+};
+//HOC - hight order component
+const Book = React.memo(BooksSecret)

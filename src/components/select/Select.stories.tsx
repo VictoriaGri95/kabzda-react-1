@@ -1,5 +1,5 @@
 import {Select} from "./Select.tsx";
-import  {useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 
 export default {
   title: 'select',
